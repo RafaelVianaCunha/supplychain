@@ -220,7 +220,7 @@ def register_with_existing_node():
 
     # Make a request to register with remote node and obtain information
     response = requests.post(node_address + "/register_node",
-                             data=json.dumps(data), headers=headers)
+                             data=json.dumps(data, ensure_ascii=False).encode('utf8'), headers=headers)
 
     if response.status_code == 200:
         global blockchain

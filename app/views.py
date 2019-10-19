@@ -33,17 +33,45 @@ def fetch_posts():
         posts = sorted(content, key=lambda k: k['timestamp'],
                        reverse=True)
 
-
 @app.route('/')
 def index():
     fetch_posts()
     return render_template('index.html',
-                           title='YourNet: Decentralized '
-                                 'content sharing',
+                           title='O&G: Logistic '
+                                 'Chain Tracker',
                            posts=posts,
                            node_address=CONNECTED_NODE_ADDRESS,
                            readable_time=timestamp_to_string)
 
+@app.route('/register')
+def register():
+    fetch_posts()
+    return render_template('register.html',
+                           title='O&G: Logistic '
+                                 'Chain Tracker',
+                           posts=posts,
+                           node_address=CONNECTED_NODE_ADDRESS,
+                           readable_time=timestamp_to_string)
+
+@app.route('/blocks')
+def blocks():
+    fetch_posts()
+    return render_template('blocks.html',
+                           title='O&G: Logistic '
+                                 'Chain Tracker',
+                           posts=posts,
+                           node_address=CONNECTED_NODE_ADDRESS,
+                           readable_time=timestamp_to_string)
+
+@app.route('/blocks-pending')
+def blocksPending():
+    fetch_posts()
+    return render_template('blocks-pending.html',
+                           title='O&G: Logistic '
+                                 'Chain Tracker',
+                           posts=posts,
+                           node_address=CONNECTED_NODE_ADDRESS,
+                           readable_time=timestamp_to_string)
 
 @app.route('/submit', methods=['POST'])
 def submit_textarea():
